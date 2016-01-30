@@ -28,3 +28,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.bin
+*.info
+*.FBX
+*.meta
+GGJ2016/Temp/UnityLockfile
