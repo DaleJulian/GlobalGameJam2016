@@ -9,19 +9,28 @@ public class ToolTipManager : MonoBehaviour {
 
 	private Dictionary<string, string> TextList = new Dictionary<string, string>();
 
+	private float letterPause = 0.08f;
+
 	public void Start() {
-		UIText = GameObject.Find("Tooltip Text").GetComponent<Text>();
+		UIText = GetComponent<Text>();
 		UIText.text = "";
 
 		TextList.Add("Eye", "I need to find chuvaness eye.");
 
-		UIText.text = TextList["Eye"];
+	
 		//TODO script
 	}
 
 	public void toggleText(string key) {
-		if(TextList.ContainsKey("key")) {
-			UIText.text = TextList[key];
+		if(TextList.ContainsKey(key)) {
+			StartCoroutine (TypewriterText(TextList[key].ToString()));
+		}
+	}
+
+	public IEnumerator TypewriterText(string text) {
+		foreach (char letter in text.ToCharArray()) {
+			UIText.text += letter;	
+			yield return new WaitForSeconds(letterPause);
 		}
 	}
 
